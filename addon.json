@@ -5,6 +5,7 @@
 	"tags"		: [ "comic", "fun" ],
 	"ignore"	:
 	[
+		"models_src/*",
 		"*.bat",
 		"*.md"
 	]
