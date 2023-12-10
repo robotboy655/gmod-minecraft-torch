@@ -1,0 +1,5 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "minecraft/torch"
+	"$surfaceprop" "wood"
+}

@@ -1,0 +1,6 @@
+"UnlitGeneric"
+{
+	"$basetexture" "minecraft/torch_break"
+	"$vertexcolor" "1"
+	"$vertexalpha" "1"
+}
