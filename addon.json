@@ -1,0 +1,11 @@
+{
+	"id"		: "104607519",
+	"title"		: "Minecraft Torch",
+	"type"		: "Weapon",
+	"tags"		: [ "comic", "fun" ],
+	"ignore"	:
+	[
+		"*.bat",
+		"*.md"
+	]
+}
