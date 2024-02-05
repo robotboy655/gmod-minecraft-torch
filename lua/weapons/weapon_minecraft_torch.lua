@@ -84,9 +84,9 @@ function SWEP:PrimaryAttack()
 	local ent = tr.Entity
 	if ( !IsValid( ent ) ) then return end
 
-	if ( !owner:IsNPC() && !owner:KeyDown( IN_SPEED ) && ent:GetClass() == "ent_minecraft_torch" ) then
+	if ( !owner:IsNPC() and !owner:KeyDown( IN_SPEED ) and ent:GetClass() == "ent_minecraft_torch" ) then
 		ent:Remove()
-	elseif ( !ent:IsPlayer() && owner:EyePos():Distance( tr.HitPos ) < 100 && owner:WaterLevel() < 3 ) then
+	elseif ( !ent:IsPlayer() and owner:EyePos():Distance( tr.HitPos ) < 100 and owner:WaterLevel() < 3 ) then
 		ent:Fire( "IgniteLifetime", math.random( 10, 30 ) )
 	end
 end
@@ -112,7 +112,7 @@ function SWEP:SecondaryAttack()
 
 	local tr = owner:GetEyeTrace()
 
-	if ( !owner:KeyDown( IN_SPEED ) && tr.HitNormal.z >= 0 && owner:EyePos():Distance( tr.HitPos ) < 100 && tr.HitWorld && tr.Entity:GetClass() != "ent_minecraft_torch" ) then
+	if ( !owner:KeyDown( IN_SPEED ) and tr.HitNormal.z >= 0 and owner:EyePos():Distance( tr.HitPos ) < 100 and tr.HitWorld and tr.Entity:GetClass() != "ent_minecraft_torch" ) then
 		local ang = Angle( 0, 0, 0 )
 		local pos = tr.HitPos
 		if ( tr.HitNormal.z < 0.7 ) then
@@ -169,7 +169,7 @@ end
 
 function SWEP:Reload()
 	local owner = self:GetOwner()
-	if ( !IsValid( owner ) || !owner:KeyPressed( IN_RELOAD ) || CLIENT ) then return end
+	if ( !IsValid( owner ) or !owner:KeyPressed( IN_RELOAD ) or CLIENT ) then return end
 
 	for id, ent in pairs( ents.FindByClass( "ent_minecraft*" ) ) do
 		if ( ent:GetNWBool( "WeaponSpawned", false ) ) then
@@ -202,7 +202,7 @@ function SWEP:DoIdle()
 end
 
 function SWEP:Idle()
-	if ( CLIENT || !IsValid( self:GetOwner() ) ) then return end
+	if ( CLIENT or !IsValid( self:GetOwner() ) ) then return end
 
 	timer.Create( "rb655_idle" .. self:EntIndex(), self:SequenceDuration(), 1, function()
 		if ( !IsValid( self ) ) then return end
@@ -238,14 +238,14 @@ end
 SWEP.NextEffect = 0.1
 function SWEP:DrawEffects()
 	local owner = self:GetOwner()
-	if ( IsValid( owner ) && owner:WaterLevel() > 2 ) then return end
+	if ( IsValid( owner ) and owner:WaterLevel() > 2 ) then return end
 
 	local pos = self:GetPos()
 	if ( self:LookupAttachment( "muzzle" ) ) then
 		pos = self:GetAttachment( self:LookupAttachment( "muzzle" ) ).Pos
 	end
 
-	if ( IsValid( owner ) && !owner:ShouldDrawLocalPlayer() && owner == LocalPlayer() ) then
+	if ( IsValid( owner ) and !owner:ShouldDrawLocalPlayer() and owner == LocalPlayer() ) then
 		local vm = owner:GetViewModel()
 		if ( vm:LookupAttachment( "muzzle" ) ) then
 			pos = vm:GetAttachment( vm:LookupAttachment( "muzzle" ) ).Pos
@@ -274,7 +274,7 @@ function SWEP:DrawEffects()
 				particle:SetDieTime( 0.8 )
 				particle:SetStartAlpha( 255 )
 				particle:SetEndAlpha( 0 )
-				if ( IsValid( owner ) && !owner:ShouldDrawLocalPlayer() && owner == LocalPlayer() ) then
+				if ( IsValid( owner ) and !owner:ShouldDrawLocalPlayer() and owner == LocalPlayer() ) then
 					particle:SetStartSize( 8 )
 					particle:SetEndSize( 2 )
 				else

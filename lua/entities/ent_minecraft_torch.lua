@@ -68,7 +68,7 @@ function ENT:Think()
 		end
 	end
 
-	if ( CLIENT && self:GetWorking() ) then
+	if ( CLIENT and self:GetWorking() ) then
 		self.SmoothLight = math.Approach( self.SmoothLight, math.random( 128, 384 ), 2.5 )
 
 		local iTorchLight = DynamicLight( self:EntIndex() )
@@ -120,12 +120,12 @@ end
 
 function ENT:PhysicsCollide( data, physobj )
 	local ent = data.HitEntity
-	if ( ent:IsOnFire() || ent:IsPlayer() || ent == self || math.random( 0, 100 ) < 65 || !self:GetWorking() ) then return end
+	if ( ent:IsOnFire() or ent:IsPlayer() or ent == self or math.random( 0, 100 ) < 65 or !self:GetWorking() ) then return end
 	ent:Fire( "IgniteLifetime", math.random( 10, 30 ) )
 end
 
 function ENT:SpawnFunction( ply, tr )
-	if ( !tr.Hit || #ents.FindByClass( "ent_minecraft_torch" ) > 31 ) then return end
+	if ( !tr.Hit or #ents.FindByClass( "ent_minecraft_torch" ) > 31 ) then return end
 
 	local ent = ents.Create( self.ClassName )
 	ent:SetPos( tr.HitPos + tr.HitNormal * 2 )
